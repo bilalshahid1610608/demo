@@ -1,10 +1,15 @@
 <?php
+
+use Doctrine\ORM\Mapping\Entity;
+
 require_once "bootstrap.php";
 require 'smartyHeader.php';
+require_once "Entity/User.php";
 
 $heading = 'List of Companies';
 
-$userRepository = $entityManager->getRepository(User::class);
+
+$userRepository = $entityManager->getRepository('User');
 $companiesEntities = $userRepository->findAll();
 
 // Convert entities to arrays
