@@ -1,5 +1,5 @@
 <?php
-// src/Entity/User.php
+//Entity/User.php
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -21,13 +21,18 @@ class User
      */
     private $name;
 
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $email;
+
     // Getters and setters
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -35,6 +40,17 @@ class User
     public function setName(string $name): self
     {
         $this->name = $name;
+        return $this;
+    }
+
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
         return $this;
     }
 }
