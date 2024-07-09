@@ -3,7 +3,7 @@
 require 'bootstrap.php';
 require 'smartyHeader.php';
 require_once "Entity/User.php";
-
+// use Demo/Entity/User;
 
 $heading = 'List of Companies';
 
@@ -14,7 +14,7 @@ if (!isset($entityManager)) {
     die('EntityManager not available');
 }*/
 
-$userRepository = $entityManager->getRepository(User::class);
+$userRepository = $entityManager->getRepository('User');
 $companiesEntities = $userRepository->findAll();
 
 // Convert entities to arrays

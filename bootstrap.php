@@ -4,30 +4,43 @@
 use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMSetup;
-use Doctrine\ORM\Tools\Setup;
-use Symfony\Component\Cache\Adapter\ArrayAdapter;
-
+// require_once "User.php";
+// use Doctrine\ORM\Tools\Setup;
+// use Symfony\Component\Cache\Adapter\ArrayAdapter;
 require_once __DIR__ . "/vendor/autoload.php";
 
+// $paths = array(__DIR__."/Entity");
+// // echo($paths[0]);
+// // exit();
+// $isDevMode = true;
 
-$paths = array(__DIR__."/Entity");
-$isDevMode = false;
 
-
-$dbParams = array(
-    'driver'   => 'pdo_mysql',
-    'host'     => 'localhost',
-    'port'     => 3306,
-    'dbname'   => 'Demo',
-    'user'     => 'root',
-    'password' => '',
-);
+// $dbParams = array(
+//     'driver'   => 'pdo_mysql',
+//     'host'     => 'localhost',
+//     'port'     => 3306,
+//     'dbname'   => 'Demo',
+//     'user'     => 'root',
+//     'password' => '',
+// );
 
 
 $ormConfig = ORMSetup::createAttributeMetadataConfiguration(
-    $paths,
-    $isDevMode,
+    paths: array(__DIR__),
+    isDevMode:true,
 );
-$connection = DriverManager::getConnection($dbParams, $ormConfig);
+$connection = DriverManager::getConnection([
+'driver'   => 'pdo_mysql',
+'host'     => 'localhost',
+'port'     => 3306,
+'dbname'   => 'Demo',
+'user'     => 'root',
+'password' => ''], $ormConfig);
+
 $entityManager = new EntityManager($connection, $ormConfig);
 
+
+require_once "User.php";
+$UserRepository = $entityManager->getRepository(User::class);
+$Users = $UserRepository->findAll();
+var_dump($Users);
