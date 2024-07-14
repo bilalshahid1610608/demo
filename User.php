@@ -1,7 +1,8 @@
 <?php
-//Entity/User.php
+//src/Entity/User.php
 // namespace Entity;
 
+// namespace App\Entity;
 // use Doctrine\ORM\Mapping as ORM;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -17,7 +18,6 @@ class User
      * @ORM\Column(type="integer")
      */
     private $id;
-
     /**
      * @ORM\Column(type="string")
      */
